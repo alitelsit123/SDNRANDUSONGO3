@@ -18,6 +18,11 @@ $alumni = new Alumni($connection);
 if(@$_GET['act'] == '') 
 ?>
 
+<?php  
+$protocol = (!empty($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == '1')) ? 'https://' : 'http://';
+$baseUrl = $protocol.$_SERVER['SERVER_NAME'].($_SERVER['SERVER_PORT'] != 80 ? ':'.$_SERVER['SERVER_PORT']:'');
+?>
+
 
 
 
@@ -29,6 +34,7 @@ if(@$_GET['act'] == '')
         <tr>
           <th>No. </th>
           <th>Nama alumni</th>
+          <th>Foto</th>
           <th style="min-width: 100px;">tgl lahir</th>
           <th>Jenis kelamin</th>
           <th style="min-width: 200px;">Alamat</th>
@@ -43,11 +49,18 @@ if(@$_GET['act'] == '')
            <?php
 
         $tampil = $alumni->tampil();
+        $no = 0;
         while($data = $tampil->fetch_object()) {
           ?>
         <tr>
-          <td><?php echo $data->id_alumni; ?></td>
+          <td><?php echo ++$no; ?></td>
           <td><?php echo $data->nama_alumni; ?></td>
+          <td>
+            <?= $data->foto ?>
+            <?php if($data->foto): ?>
+            <img src="<?= $baseUrl.'/'.$data->foto ?>" alt="" srcset="" style="width:80px;height:80px;border-radius:999px;object-fit: cover;" />
+            <?php endif; ?>
+          </td>
           <td><?php echo $data->tgl_lahir; ?></td>
           <td><?php echo $data->jenis_kelamin; ?></td>
           <td><?php echo $data->alamat; ?></td>
@@ -78,16 +91,21 @@ if(@$_GET['act'] == '')
               <h4 class="modal-title">Tambah Data Alumni</h4>
             </div>
 
-            <form id="form-create" action="#" method="post">
+            <form id="form-create" action="#" method="post" enctype="multipart/form-data">
               <div class="modal-body ">
                 <div class="form-group">
                   <label class="control-label" for="id_alumni">Id Alumni</label>
-                  <input type="text" name="id_alumni" class="form-control" id="id_alumni" required="">
+                  <input type="text" name="id_alumni" class="form-control" id="id_alumni" value="<?= round(microtime(true)*1000) ?>" required="">
                 </div>
 
                 <div class="form-group">
                   <label class="control-label" for="nama_alumni">Nama Alumni</label>
                   <input type="text" name="nama_alumni" class="form-control" id="nama_alumni" required="">
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label" for="foto">Foto</label>
+                  <input type="file" name="foto" class="form-control" id="foto">
                 </div>
 
                 <div class="form-group">
@@ -158,13 +176,20 @@ if(@$_GET['act'] == '')
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Edit Data Alumni</h4>
               </div>
-              <form action="#" method="POST" id="form-edit">
+              <form action="#" method="POST" id="form-edit" enctype="multipart/form-data">
                 <div class="modal-body" id="modal-edit">
                   <div class="form-group">
                     <label class="control-label" for="nama_alumni">Nama Alumni</label>
                     <input type="hidden" name="id_alumni" id="id_alumni">
                     <input type="text" name="nama_alumni" class="form-control" id="nama_alumni" required="">
                   </div>
+
+                  <div class="form-group">
+                    <label class="control-label" for="foto">Foto</label>
+                    <div class="show-image"></div>
+                    <div class="update-image"></div>
+                  </div>
+
                   <div class="form-group">
                     <label class="control-label" for="tgl_lahir">Tgl Lahir</label>
                     <input type="date" name="tgl_lahir" class="form-control" id="tgl_lahir" required>
@@ -233,7 +258,7 @@ if(@$_GET['act'] == '')
       $sma_smk = $connection->conn->real_escape_string($_POST['sma_smk']);
       $pekerjaan = $connection->conn->real_escape_string($_POST['pekerjaan']);
       
-      $alumni->tambah($id_alumni, $id_user, $nama_alumni, $tgl_lahir, $jenis_kelamin, $alamat, $tlp, $tgl_masuk, $tgl_lulus, $smp, $sma_smk, $pekerjaan);
+      $store = $alumni->tambah($id_alumni, $id_user, $nama_alumni, $tgl_lahir, $jenis_kelamin, $alamat, $tlp, $tgl_masuk, $tgl_lulus, $smp, $sma_smk, $pekerjaan);
       header("location: ?page=data-alumni");
     }
     
@@ -264,6 +289,7 @@ if(@$_GET['act'] == '')
 
   <script src="../assets/js/jquery-1.10.2.js"></script>
   <script type="text/javascript">
+  
   // SET DATA TO MODAL FORM EDIT
   function editData(data) {
     let elementJK = '';
@@ -276,6 +302,14 @@ if(@$_GET['act'] == '')
     $('#form-edit input[name=tgl_lulus]').val(data.tgl_lulus)
     $('#form-edit input[name=smp]').val(data.smp)
     $('#form-edit input[name=sma_smk]').val(data.sma_smk)
+
+    if(data.foto) {
+      $('.show-image').html('<input type="hidden" name="foto_old" value="'+data.foto+'" /><img src="<?= $baseUrl ?>/'+data.foto+'" alt="" srcset="" style="width:80px;height:80px;border-radius:999px;object-fit: cover;" /><button type="button" class="btn btn-primary btn-xs btn-update-foto" data-foto="'+data.foto+'" style="margin-left:0.75rem;">Update</button>');
+      $('.update-image').html('')
+    } else {
+      $('.show-image').html('')
+      $('.update-image').html('<input type="file" name="foto" class="form-control" id="foto" />');
+    }
     
     if(data.jenis_kelamin == 'Pria') {
       elementJK = `
@@ -309,4 +343,16 @@ if(@$_GET['act'] == '')
       // location.reload();
     }
   }
+
+  $(document).on('click','.btn-update-foto',function() {
+    const data = {foto: $(this).data('foto')}
+    $('.show-image').html('')
+    $('.update-image').html('<input type="hidden" name="on_update" value="true" /><input type="file" name="foto" class="form-control" id="foto" /><button type="button" class="btn btn-danger btn-xs btn-update-foto-cancel" data-foto="'+data.foto+'" style="margin-top:0.75rem;">Batal</button>');
+  })
+
+  $(document).on('click','.btn-update-foto-cancel',function() {
+    const data = {foto: $(this).data('foto')}
+    $('.update-image').html('')
+    $('.show-image').html('<input type="hidden" name="foto_old" value="'+data.foto+'" /><img src="<?= $baseUrl ?>/'+data.foto+'" alt="" srcset="" style="width:80px;height:80px;border-radius:999px;object-fit: cover;" /><button type="button" class="btn btn-primary btn-xs btn-update-foto" data-foto="'+data.foto+'" style="margin-left:0.75rem;">Update</button>');
+  })
   </script>

@@ -10,12 +10,13 @@ $login = new Login($connection);
 $message = '';
 session_start();
 echo @$_SESSION['login_user'];
+$protocol = (!empty($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == '1')) ? 'https://' : 'http://';
+$baseUrl = $protocol.$_SERVER['SERVER_NAME'].($_SERVER['SERVER_PORT'] != 80 ? ':'.$_SERVER['SERVER_PORT']:'');
 
 // IF HAS LOGGED IN REDIRECT TO ADMIN PAGE
 if(@$_SESSION['login_user']) {
    header('Location: index.php');
 }
-
 if(isset($_POST['submit'])) {
    $username = $connection->conn->real_escape_string($_POST['username']);
    $password = $connection->conn->real_escape_string($_POST['password']);
@@ -67,8 +68,8 @@ if(isset($_POST['submit'])) {
             <input type="password" name="password" id="password" class="form-control" placeholder="Password">
          </div>
          <button type="submit" name="submit" class="btn btn-primary">Login</button>
-        <a href="http://sdnrandusongo3.epizy.com/">
-      <button type="button" class="btn btn-success">Home</button>
+        <a href="<?= $baseUrl ?>">
+          <button type="button" class="btn btn-success">Home</button>
         </a>
       </form>
    </div>   
