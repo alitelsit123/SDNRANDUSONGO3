@@ -19,5 +19,8 @@ class Database {
 			return true;
 		}
 	}
+  function getConnection() {
+    return $this->conn;
+  }
 } 
 ?>

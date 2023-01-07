@@ -1,9 +1,9 @@
 <?php
 ob_start();
 
-require_once('config/+koneksi.php');
-require_once('models/database.php');
-require_once('models/m_kontak.php');
+require_once('./config/+koneksi.php');
+require_once('./models/database.php');
+require_once('./models/m_kontak.php');
 
 $connection = new Database($host, $user, $pass, $database);
 $kontak = new Kontak($connection);
@@ -16,7 +16,7 @@ $url = @$_GET['page'];
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>SDN RANDUSONGO 3</title>
+   <title>SMPN 3 MAOSPATI</title>
   
     <!-- FAVICON -->
     <link rel="icon" type="image/png" href="favicon-randusongo.png">
@@ -33,7 +33,7 @@ $url = @$_GET['page'];
 <header>  
   <!-- BANNER -->
   <div class="banner-wrap bg-success margin-top-md">
-    <img src="images/banner-sdn-randusongo-3_lg.jpg" alt="banner-sdn-randusongo-3" class="header-banner-img">
+    <img src="images/banner-sdn-randusongo-3_lg.jpeg" alt="banner-sdn-randusongo-3" class="header-banner-img">
     <!-- <h1>SDN BANNER</h1> -->
   </div>
   <!-- END BANNER -->
@@ -118,9 +118,9 @@ $url = @$_GET['page'];
     </div>
   </a>
   <div class="bg-blue margin-top-sm margin-bottom-sm padding-sm">
-    <p class="text-center text-white margin-bottom-xs">Copyright &copy; 2021 </p>
+    <p class="text-center text-white margin-bottom-xs">Copyright &copy; 2022 </p>
     <p class="text-center text-gray margin-bottom-xs">
-      <a href="<?= $tampilKontak->instagram ?>" target="_blank" class="footer-link">Instagram</a> | <a href="<?= $tampilKontak->youtube ?>" target="_blank" class="footer-link">Youtube</a> | Ngawi, Jawa Timur 63272
+      <a href="<?= $tampilKontak->instagram ?>" target="_blank" class="footer-link">Instagram</a> | <a href="<?= $tampilKontak->youtube ?>" target="_blank" class="footer-link">Youtube</a> | Maospati, Jawa Timur, 63392
     </p>
   </div>
 </footer>

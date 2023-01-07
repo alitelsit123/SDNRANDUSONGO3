@@ -54,12 +54,12 @@ if(@$_GET['msg'] == 'success-hapus') {
           <td><?php echo $data->email; ?></td>
           <td><?php echo $data->username; ?></td>
           <td>
-               <span class="hidden"><?php echo $data->password; ?></span>
-               <span>*********</span>
+               <span id="<?= 'real-'.$data->id_login ?>" class="hidden"><?php echo $data->password; ?></span>
+               <span id="<?= 'fake-'.$data->id_login ?>">*********</span>
           </td>
           <td><?php echo $data->type; ?></td>
           <td align="center"> 
-              <button class="btn btn-warning btn-xs" onclick="showPassword(this)"><i class="fa fa-eye"></i></button>
+              <button class="btn btn-warning btn-xs" onclick="showPassword(this)" data-fake="#<?= 'fake-'.$data->id_login ?>" data-real="#<?= 'real-'.$data->id_login ?>"><i class="fa fa-eye"></i></button>
               <?php if($data->type <> 'admin') {?>
               <button class="btn btn-danger btn-xs" onclick="deleteData('<?= htmlspecialchars($data->username).'\',\''. htmlspecialchars($data->id_login) ?>')"><i class="fa fa-trash-o"></i> hapus</button>
               <?php } ?>
@@ -91,14 +91,12 @@ if(@$_GET['msg'] == 'success-hapus') {
    }
 
    function showPassword(elm) {
-      let td_password = $(elm).parent().parent().children()[2];
-      let passwd = $(td_password).children().eq(0);
-      if($(td_password).children().eq(0).hasClass('hidden')) {
-         $(td_password).children().eq(0).removeClass('hidden');
-         $(td_password).children().eq(1).addClass('hidden');
+      if($($(elm).data('real')).hasClass('hidden')) {
+         $($(elm).data('real')).removeClass('hidden');
+         $($(elm).data('fake')).addClass('hidden');
       } else {
-         $(td_password).children().eq(1).removeClass('hidden');
-         $(td_password).children().eq(0).addClass('hidden');
+         $($(elm).data('fake')).removeClass('hidden');
+         $($(elm).data('real')).addClass('hidden');
       }
    }
 </script>

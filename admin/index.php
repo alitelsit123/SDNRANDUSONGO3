@@ -8,6 +8,9 @@ require_once('../models/database.php');
 $connection = new Database($host, $user, $pass, $database);
 
 $page = @$_GET['page'];
+$protocol = (!empty($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == '1')) ? 'https://' : 'http://';
+$baseUrl = $protocol.$_SERVER['SERVER_NAME'].($_SERVER['SERVER_PORT'] != 80 ? ':'.$_SERVER['SERVER_PORT']:'');
+
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +47,7 @@ $page = @$_GET['page'];
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="">SDN RANDUSONGO 3</a>
+          <a class="navbar-brand" href="">SMPN 3 Maospati</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -54,6 +57,9 @@ $page = @$_GET['page'];
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Kumpulan Data <b class="caret"></b></a>
               <ul class="dropdown-menu">
+                <!-- <li><a href="?page=data-kelas">Data Kelas</a></li> -->
+                <!-- <li><a href="?page=data-nilai">Data Nilai</a></li>
+                <li><a href="?page=data-absensi">Data Absensi</a></li> -->
                 <li><a href="?page=data-alumni">Data Alumni</a></li>
                 <li><a href="?page=data-pengguna">Data Pengguna</a></li>
               </ul>
@@ -88,6 +94,26 @@ $page = @$_GET['page'];
             switch ($page) {
               case 'dashboard':
                 include "../views/admin/dashboard.php";
+                break;
+
+              case 'data-kelas':
+                include "../views/admin/data-kelas.php";
+                break;
+
+              case 'data-nilai':
+                include "../views/admin/data-nilai.php";
+                break;
+
+              case 'data-absensi':
+                include "../views/admin/data-absensi.php";
+                break;
+
+              case 'tambah-absensi':
+                include "../views/admin/tambah-absensi.php";
+                break;
+
+              case 'tambah-nilai':
+                include "../views/admin/tambah-nilai.php";
                 break;
 
               case 'data-alumni':

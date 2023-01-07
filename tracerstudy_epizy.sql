@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Jan 2022 pada 10.26
--- Versi server: 10.4.13-MariaDB
--- Versi PHP: 7.4.7
+-- Generation Time: Dec 04, 2022 at 08:35 AM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,31 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `alumni`
+-- Table structure for table `absensi`
+--
+
+CREATE TABLE `absensi` (
+  `id` int(11) NOT NULL,
+  `nama_siswa` text NOT NULL,
+  `sakit` int(11) NOT NULL,
+  `izin` int(11) NOT NULL,
+  `alpha` int(11) NOT NULL,
+  `tahun` text NOT NULL,
+  `semester` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `absensi`
+--
+
+INSERT INTO `absensi` (`id`, `nama_siswa`, `sakit`, `izin`, `alpha`, `tahun`, `semester`) VALUES
+(2, 'NAYSILA CHINTYA AYUDEWI', 0, 1, 0, '2021/2022', 1),
+(3, 'NAYSILA CHINTYA AYUDEWI', 0, 0, 0, '2021/2022', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `alumni`
 --
 
 CREATE TABLE `alumni` (
@@ -39,21 +63,80 @@ CREATE TABLE `alumni` (
   `tgl_lulus` date DEFAULT NULL,
   `smp` varchar(100) DEFAULT NULL,
   `sma_smk` varchar(100) DEFAULT NULL,
-  `pekerjaan` varchar(100) DEFAULT NULL
+  `pekerjaan` varchar(100) DEFAULT NULL,
+  `foto` text DEFAULT NULL,
+  `agama` text DEFAULT NULL,
+  `kewarganegaraan` text DEFAULT NULL,
+  `anak_keberapa` int(11) DEFAULT NULL,
+  `jml_saudara_kandung` int(11) DEFAULT NULL,
+  `jml_saudara_tiri` int(11) DEFAULT NULL,
+  `jml_saudara_angkat` int(11) DEFAULT NULL,
+  `type_anak` text DEFAULT NULL,
+  `bahasa` text DEFAULT NULL,
+  `tinggal_dengan` text DEFAULT NULL,
+  `jarak` text DEFAULT NULL,
+  `golongan_darah` text DEFAULT NULL,
+  `penyakit_diderita` text DEFAULT NULL,
+  `kelainan_jasmani` text DEFAULT NULL,
+  `tb_bb` text DEFAULT NULL,
+  `tamatan_dari` text DEFAULT NULL,
+  `tamatan_tanggal_no_ijazah` text DEFAULT NULL,
+  `tamatan_tanggal_no_skhun` text DEFAULT NULL,
+  `tamatan_lama_belajar` text DEFAULT NULL,
+  `pindahan_dari` text DEFAULT NULL,
+  `pindahan_alasan` text DEFAULT NULL,
+  `diterima_tingkat` text DEFAULT NULL,
+  `diterima_bidang` text DEFAULT NULL,
+  `diterima_program` text DEFAULT NULL,
+  `diterima_tanggal` text DEFAULT NULL,
+  `ayah_nama` text DEFAULT NULL,
+  `ayah_tanggal_lahir` text DEFAULT NULL,
+  `ayah_agama` text DEFAULT NULL,
+  `ayah_kewarganegaraan` text DEFAULT NULL,
+  `ayah_pendidikan` text DEFAULT NULL,
+  `ayah_pekerjaan` text DEFAULT NULL,
+  `ayah_pengeluaran` text DEFAULT NULL,
+  `ayah_alamat` text DEFAULT NULL,
+  `ayah_hidup` text DEFAULT NULL,
+  `ibu_nama` text DEFAULT NULL,
+  `ibu_tanggal_lahir` text DEFAULT NULL,
+  `ibu_agama` text DEFAULT NULL,
+  `ibu_kewarganegaraan` text DEFAULT NULL,
+  `ibu_pendidikan` text DEFAULT NULL,
+  `ibu_pekerjaan` text DEFAULT NULL,
+  `ibu_pengeluaran` text DEFAULT NULL,
+  `ibu_alamat` text DEFAULT NULL,
+  `ibu_hidup` text DEFAULT NULL,
+  `wali_nama` text DEFAULT NULL,
+  `wali_tanggal_lahir` text DEFAULT NULL,
+  `wali_agama` text DEFAULT NULL,
+  `wali_kewarganegaraan` text DEFAULT NULL,
+  `wali_pendidikan` text DEFAULT NULL,
+  `wali_pekerjaan` text DEFAULT NULL,
+  `wali_pengeluaran` text DEFAULT NULL,
+  `wali_alamat` text DEFAULT NULL,
+  `kegemaran` text DEFAULT NULL,
+  `beasiswa` text DEFAULT NULL,
+  `meninggalkan_tanggal` text DEFAULT NULL,
+  `meninggalkan_alasan` text DEFAULT NULL,
+  `akhir_tanggal` text DEFAULT NULL,
+  `akhir_ijazah` text DEFAULT NULL,
+  `akhir_nomor_surat` text DEFAULT NULL,
+  `akhir_nilai_ratarata` text DEFAULT NULL,
+  `nisn` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `alumni`
+-- Dumping data for table `alumni`
 --
 
-INSERT INTO `alumni` (`id_alumni`, `id_login`, `nama_alumni`, `tgl_lahir`, `jenis_kelamin`, `alamat`, `tlp`, `tgl_masuk`, `tgl_lulus`, `smp`, `sma_smk`, `pekerjaan`) VALUES
-('0012341', 7, 'coba', '2022-01-18', 'Pria', 'cob', '01892312', '2022-01-18', '2022-01-18', 'coba', 'coba', 'coba'),
-('A001', 2, 'Wiwik handayani', '1990-11-20', 'Wanita', 'Dsn.pencol 1 rt:04 rw:03 ds.randusongo kec.gerih kab.ngawi', '082230861477', '1998-06-01', '2004-06-01', 'Smpn 1 karas', '_', 'pengusaha');
+INSERT INTO `alumni` (`id_alumni`, `id_login`, `nama_alumni`, `tgl_lahir`, `jenis_kelamin`, `alamat`, `tlp`, `tgl_masuk`, `tgl_lulus`, `smp`, `sma_smk`, `pekerjaan`, `foto`, `agama`, `kewarganegaraan`, `anak_keberapa`, `jml_saudara_kandung`, `jml_saudara_tiri`, `jml_saudara_angkat`, `type_anak`, `bahasa`, `tinggal_dengan`, `jarak`, `golongan_darah`, `penyakit_diderita`, `kelainan_jasmani`, `tb_bb`, `tamatan_dari`, `tamatan_tanggal_no_ijazah`, `tamatan_tanggal_no_skhun`, `tamatan_lama_belajar`, `pindahan_dari`, `pindahan_alasan`, `diterima_tingkat`, `diterima_bidang`, `diterima_program`, `diterima_tanggal`, `ayah_nama`, `ayah_tanggal_lahir`, `ayah_agama`, `ayah_kewarganegaraan`, `ayah_pendidikan`, `ayah_pekerjaan`, `ayah_pengeluaran`, `ayah_alamat`, `ayah_hidup`, `ibu_nama`, `ibu_tanggal_lahir`, `ibu_agama`, `ibu_kewarganegaraan`, `ibu_pendidikan`, `ibu_pekerjaan`, `ibu_pengeluaran`, `ibu_alamat`, `ibu_hidup`, `wali_nama`, `wali_tanggal_lahir`, `wali_agama`, `wali_kewarganegaraan`, `wali_pendidikan`, `wali_pekerjaan`, `wali_pengeluaran`, `wali_alamat`, `kegemaran`, `beasiswa`, `meninggalkan_tanggal`, `meninggalkan_alasan`, `akhir_tanggal`, `akhir_ijazah`, `akhir_nomor_surat`, `akhir_nilai_ratarata`, `nisn`) VALUES
+('12048', 1, 'NAYSILA CHINTYA AYUDEWI', '2008-10-02', 'Wanita', 'JL. Durent RT06 rw 01', '', '0000-00-00', '0000-00-00', '', '', '', '', 'islam', 'Indonesia', 1, 2, 0, 0, '', '', '', '', '', '', '', '', 'SDN Gulun 1', '25 Juli 2021', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0084578500');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `blog_post`
+-- Table structure for table `blog_post`
 --
 
 CREATE TABLE `blog_post` (
@@ -65,7 +148,7 @@ CREATE TABLE `blog_post` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `blog_post`
+-- Dumping data for table `blog_post`
 --
 
 INSERT INTO `blog_post` (`id_post`, `title`, `picture_post`, `date_post`, `text_post`) VALUES
@@ -75,7 +158,36 @@ INSERT INTO `blog_post` (`id_post`, `title`, `picture_post`, `date_post`, `text_
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kontak_kami`
+-- Table structure for table `kelas`
+--
+
+CREATE TABLE `kelas` (
+  `id` int(11) NOT NULL,
+  `nama` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kelas`
+--
+
+INSERT INTO `kelas` (`id`, `nama`) VALUES
+(1, '1'),
+(2, '2'),
+(3, '3'),
+(4, '4'),
+(5, '5'),
+(6, '6'),
+(7, '7'),
+(8, '8'),
+(9, '9'),
+(10, '10'),
+(11, '11'),
+(12, '12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kontak_kami`
 --
 
 CREATE TABLE `kontak_kami` (
@@ -88,7 +200,7 @@ CREATE TABLE `kontak_kami` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `kontak_kami`
+-- Dumping data for table `kontak_kami`
 --
 
 INSERT INTO `kontak_kami` (`id_kontak`, `alamat`, `telp`, `email`, `instagram`, `youtube`) VALUES
@@ -97,7 +209,7 @@ INSERT INTO `kontak_kami` (`id_kontak`, `alamat`, `telp`, `email`, `instagram`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kritik_saran`
+-- Table structure for table `kritik_saran`
 --
 
 CREATE TABLE `kritik_saran` (
@@ -107,7 +219,7 @@ CREATE TABLE `kritik_saran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `kritik_saran`
+-- Dumping data for table `kritik_saran`
 --
 
 INSERT INTO `kritik_saran` (`id_kritiksaran`, `email`, `text_kritiksaran`) VALUES
@@ -117,7 +229,7 @@ INSERT INTO `kritik_saran` (`id_kritiksaran`, `email`, `text_kritiksaran`) VALUE
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `login`
+-- Table structure for table `login`
 --
 
 CREATE TABLE `login` (
@@ -131,7 +243,7 @@ CREATE TABLE `login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `login`
+-- Dumping data for table `login`
 --
 
 INSERT INTO `login` (`id_login`, `email`, `username`, `password`, `type`, `token`, `aktif`) VALUES
@@ -152,7 +264,54 @@ INSERT INTO `login` (`id_login`, `email`, `username`, `password`, `type`, `token
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengantar_kepsek`
+-- Table structure for table `nilai`
+--
+
+CREATE TABLE `nilai` (
+  `id` int(11) NOT NULL,
+  `nilai_angka` int(11) NOT NULL,
+  `nilai_predikat` text NOT NULL,
+  `nilai_angka_keterampilan` int(11) NOT NULL,
+  `nilai_predikat_keterampilan` text NOT NULL,
+  `semester` int(11) NOT NULL,
+  `kelas_id` int(11) DEFAULT NULL,
+  `tahun` text NOT NULL,
+  `nama_siswa` text NOT NULL,
+  `mapel` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `nilai`
+--
+
+INSERT INTO `nilai` (`id`, `nilai_angka`, `nilai_predikat`, `nilai_angka_keterampilan`, `nilai_predikat_keterampilan`, `semester`, `kelas_id`, `tahun`, `nama_siswa`, `mapel`) VALUES
+(9, 86, 'b', 88, 'b', 1, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Pendidikan Agama dan Budi Pekerti'),
+(10, 83, 'b', 85, 'b', 1, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Pendidikan Pancasila dan Kewarganegaraan'),
+(11, 86, 'b', 86, 'b', 1, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Bahasa Indonesia'),
+(12, 84, 'b', 84, 'b', 1, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Matematika'),
+(13, 86, 'b', 83, 'b', 1, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Ilmu Pengetahuan Alam'),
+(14, 84, 'b', 83, 'b', 1, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Ilmu Pengetahuan Sosial'),
+(15, 77, 'c', 82, 'c', 1, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Bahasa Inggris'),
+(16, 88, 'b', 87, 'b', 1, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Seni Budaya'),
+(17, 87, 'b', 85, 'b', 1, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Pendidikan Jasmani, Olahraga dan Kesehatan'),
+(18, 86, 'b', 87, 'b', 1, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Prakarya'),
+(19, 76, 'c', 78, 'c', 1, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Bahasa Daerah'),
+(20, 87, 'b', 86, 'b', 2, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Pendidikan Agama dan Budi Pekerti'),
+(21, 84, 'b', 88, 'b', 2, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Pendidikan Pancasila dan Kewarganegaraan'),
+(22, 86, 'b', 87, 'b', 2, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Bahasa Indonesia'),
+(23, 84, 'b', 84, 'b', 2, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Matematika'),
+(24, 86, 'b', 86, 'b', 2, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Ilmu Pengetahuan Alam'),
+(25, 86, 'b', 88, 'b', 2, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Ilmu Pengetahuan Sosial'),
+(26, 88, 'b', 87, 'b', 2, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Bahasa Inggris'),
+(27, 89, 'b', 90, 'b', 2, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Seni Budaya'),
+(28, 89, 'b', 89, 'b', 2, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Pendidikan Jasmani, Olahraga dan Kesehatan'),
+(29, 87, 'b', 87, 'b', 2, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Prakarya'),
+(30, 89, 'b', 86, 'b', 2, 0, '2021/2022', 'NAYSILA CHINTYA AYUDEWI', 'Bahasa Daerah');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pengantar_kepsek`
 --
 
 CREATE TABLE `pengantar_kepsek` (
@@ -162,7 +321,7 @@ CREATE TABLE `pengantar_kepsek` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pengantar_kepsek`
+-- Dumping data for table `pengantar_kepsek`
 --
 
 INSERT INTO `pengantar_kepsek` (`id_pengantar`, `deskripsi_pengantar`, `gambar`) VALUES
@@ -171,7 +330,7 @@ INSERT INTO `pengantar_kepsek` (`id_pengantar`, `deskripsi_pengantar`, `gambar`)
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `profil`
+-- Table structure for table `profil`
 --
 
 CREATE TABLE `profil` (
@@ -182,7 +341,7 @@ CREATE TABLE `profil` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `profil`
+-- Dumping data for table `profil`
 --
 
 INSERT INTO `profil` (`id_profil`, `picture_profil`, `desc_profil`, `location`) VALUES
@@ -191,7 +350,7 @@ INSERT INTO `profil` (`id_profil`, `picture_profil`, `desc_profil`, `location`) 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `reset_password`
+-- Table structure for table `reset_password`
 --
 
 CREATE TABLE `reset_password` (
@@ -201,7 +360,7 @@ CREATE TABLE `reset_password` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `reset_password`
+-- Dumping data for table `reset_password`
 --
 
 INSERT INTO `reset_password` (`id`, `email`, `code`) VALUES
@@ -210,7 +369,19 @@ INSERT INTO `reset_password` (`id`, `email`, `code`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `visi_misi`
+-- Table structure for table `semester`
+--
+
+CREATE TABLE `semester` (
+  `id` int(11) NOT NULL,
+  `tahun` varchar(199) NOT NULL,
+  `prefix` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `visi_misi`
 --
 
 CREATE TABLE `visi_misi` (
@@ -220,7 +391,7 @@ CREATE TABLE `visi_misi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `visi_misi`
+-- Dumping data for table `visi_misi`
 --
 
 INSERT INTO `visi_misi` (`id_visimisi`, `visi`, `misi`) VALUES
@@ -231,101 +402,137 @@ INSERT INTO `visi_misi` (`id_visimisi`, `visi`, `misi`) VALUES
 --
 
 --
--- Indeks untuk tabel `alumni`
+-- Indexes for table `absensi`
+--
+ALTER TABLE `absensi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `alumni`
 --
 ALTER TABLE `alumni`
   ADD PRIMARY KEY (`id_alumni`);
 
 --
--- Indeks untuk tabel `blog_post`
+-- Indexes for table `blog_post`
 --
 ALTER TABLE `blog_post`
   ADD PRIMARY KEY (`id_post`);
 
 --
--- Indeks untuk tabel `kontak_kami`
+-- Indexes for table `kelas`
+--
+ALTER TABLE `kelas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kontak_kami`
 --
 ALTER TABLE `kontak_kami`
   ADD PRIMARY KEY (`id_kontak`);
 
 --
--- Indeks untuk tabel `kritik_saran`
+-- Indexes for table `kritik_saran`
 --
 ALTER TABLE `kritik_saran`
   ADD PRIMARY KEY (`id_kritiksaran`);
 
 --
--- Indeks untuk tabel `login`
+-- Indexes for table `login`
 --
 ALTER TABLE `login`
   ADD PRIMARY KEY (`id_login`);
 
 --
--- Indeks untuk tabel `pengantar_kepsek`
+-- Indexes for table `nilai`
+--
+ALTER TABLE `nilai`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pengantar_kepsek`
 --
 ALTER TABLE `pengantar_kepsek`
   ADD PRIMARY KEY (`id_pengantar`);
 
 --
--- Indeks untuk tabel `profil`
+-- Indexes for table `profil`
 --
 ALTER TABLE `profil`
   ADD PRIMARY KEY (`id_profil`);
 
 --
--- Indeks untuk tabel `reset_password`
+-- Indexes for table `reset_password`
 --
 ALTER TABLE `reset_password`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `visi_misi`
+-- Indexes for table `visi_misi`
 --
 ALTER TABLE `visi_misi`
   ADD PRIMARY KEY (`id_visimisi`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `blog_post`
+-- AUTO_INCREMENT for table `absensi`
+--
+ALTER TABLE `absensi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `blog_post`
 --
 ALTER TABLE `blog_post`
   MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT untuk tabel `kontak_kami`
+-- AUTO_INCREMENT for table `kelas`
+--
+ALTER TABLE `kelas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `kontak_kami`
 --
 ALTER TABLE `kontak_kami`
   MODIFY `id_kontak` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `kritik_saran`
+-- AUTO_INCREMENT for table `kritik_saran`
 --
 ALTER TABLE `kritik_saran`
   MODIFY `id_kritiksaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `login`
+-- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
   MODIFY `id_login` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
--- AUTO_INCREMENT untuk tabel `pengantar_kepsek`
+-- AUTO_INCREMENT for table `nilai`
+--
+ALTER TABLE `nilai`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `pengantar_kepsek`
 --
 ALTER TABLE `pengantar_kepsek`
   MODIFY `id_pengantar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `profil`
+-- AUTO_INCREMENT for table `profil`
 --
 ALTER TABLE `profil`
   MODIFY `id_profil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `visi_misi`
+-- AUTO_INCREMENT for table `visi_misi`
 --
 ALTER TABLE `visi_misi`
   MODIFY `id_visimisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;

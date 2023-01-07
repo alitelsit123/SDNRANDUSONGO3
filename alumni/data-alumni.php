@@ -12,6 +12,9 @@ $tampilKontak = $kontak->tampil()->fetch_object();
 $alumni = new Alumni($connection);
 $data_alumni = $alumni->tampil();
 $url = @$_GET['page'];
+$protocol = (!empty($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == '1')) ? 'https://' : 'http://';
+$baseUrl = $protocol.$_SERVER['SERVER_NAME'].($_SERVER['SERVER_PORT'] != 80 ? ':'.$_SERVER['SERVER_PORT']:'');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +39,7 @@ $url = @$_GET['page'];
 <header>  
   <!-- BANNER -->
   <div class="banner-wrap bg-success margin-top-md">
-    <img src="../images/banner-sdn-randusongo-3_lg.jpg" alt="banner-sdn-randusongo-3" class="header-banner-img">
+    <img src="../images/banner-sdn-randusongo-3_lg.jpeg" alt="banner-sdn-randusongo-3" class="header-banner-img">
     <!-- <h1>SDN BANNER</h1> -->
   </div>
   <!-- END BANNER -->
@@ -57,7 +60,7 @@ $url = @$_GET['page'];
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li ><a href="http://sdnrandusongo3.epizy.com/">Home</a></li>
+          <li ><a href="<?= $baseUrl ?>">Home</a></li>
           <li class="active"><a href="#">Alumni</a></li>
           <li <?= $url == 'kritik-saran' ? 'class="active"' : '' ?> ><a href="index.php">Login alumni</a></li>
         </ul>
